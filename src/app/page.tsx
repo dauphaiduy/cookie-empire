@@ -17,7 +17,7 @@ export default function HomePage() {
       <div className="container mx-auto px-4 py-6">
         <div className="text-center mb-8">
           <h1 className="text-6xl font-extrabold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent mb-4">
-            🍪 Cookie Empire
+            <span style={{color: 'black'}}>🍪</span> Cookie Empire
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Build your cookie empire! Click, upgrade, and watch your fortune grow with every delicious cookie.
