@@ -143,6 +143,46 @@ body {
   background: rgba(0, 0, 0, 0.5);
 }
 
+/* Enhanced Shop Tabs Styling */
+.shop-tabs .ant-tabs-tab {
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.shop-tabs .ant-tabs-tab:hover {
+  transform: scale(1.05);
+}
+
+.shop-tabs .ant-tabs-tab-active {
+  color: white;
+}
+
+.shop-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: white;
+}
+
+.shop-tabs .ant-tabs-content-holder {
+  margin-top: 24px;
+}
+
+.shop-tabs .ant-tabs-content {
+}
+
+.shop-tabs .ant-tabs-tabpane {
+  border-radius: 16px;
+}
+
+/* Dark mode adjustments */
+/* @media (prefers-color-scheme: dark) {
+  .shop-tabs .ant-tabs-tab {
+    background: rgba(55, 65, 81, 0.5);
+  }
+  
+  .shop-tabs .ant-tabs-tab:hover {
+    background: rgba(75, 85, 99, 0.8);
+  }
+} */
+
 .click-animation {
   animation: floatUp 1s ease-out forwards;
 }
@@ -222,6 +262,5 @@ body {
 .shop-tabs .ant-tabs-tab-active {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
 }

@@ -26,7 +26,7 @@ export function UpgradeCard({ upgrade, canAfford, onBuy, className = '' }: Upgra
           <div className="flex items-center space-x-2 mb-2">
             <span className="text-2xl">{upgrade.icon}</span>
             <div>
-              <h3 className="font-bold text-lg text-gray-800 dark:text-gray-200">
+              <h3 className="font-bold text-lg text-gray-800 dark:text-black-200">
                 {upgrade.name}
               </h3>
               {upgrade.owned > 0 && (
