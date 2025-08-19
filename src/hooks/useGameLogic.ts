@@ -4,25 +4,28 @@ import { GameState, INITIAL_GAME_STATE, GAME_CONFIG, Upgrade, AutoUpgrade } from
 import { calculateUpgradeCost, calculateOfflineEarnings } from '@/lib/utils';
 
 export function useGameLogic() {
-  const [gameState, setGameState] = useLocalStorage<GameState>('idle-game-state', INITIAL_GAME_STATE);
+  const [gameState, setGameState, isLoaded] = useLocalStorage<GameState>('idle-game-state', INITIAL_GAME_STATE);
   const [clickAnimations, setClickAnimations] = useState<Array<{ id: number; x: number; y: number; message: string }>>([]);
   const [isClient, setIsClient] = useState(false);
 
   // Initialize client-side only
   useEffect(() => {
     setIsClient(true);
-    // Initialize lastSaveTime if it's 0 (initial state)
-    if (gameState.lastSaveTime === 0) {
+  }, []);
+
+  // Initialize lastSaveTime if it's 0 (initial state) and data is loaded
+  useEffect(() => {
+    if (isLoaded && gameState.lastSaveTime === 0) {
       setGameState(prev => ({
         ...prev,
         lastSaveTime: Date.now()
       }));
     }
-  }, [gameState.lastSaveTime, setGameState]);
+  }, [isLoaded, gameState.lastSaveTime, setGameState]);
 
   // Calculate offline earnings when the game loads
   useEffect(() => {
-    if (!isClient) return;
+    if (!isClient || !isLoaded) return;
     
     const now = Date.now();
     const timeAway = now - gameState.lastSaveTime;
@@ -38,7 +41,7 @@ export function useGameLogic() {
         }));
       }
     }
-  }, [isClient, gameState.coinsPerSecond, gameState.lastSaveTime, setGameState]);
+  }, [isClient, isLoaded, gameState.coinsPerSecond, gameState.lastSaveTime, setGameState]);
 
   // Auto-save game state
   useEffect(() => {
@@ -171,6 +174,7 @@ export function useGameLogic() {
 
   return {
     gameState,
+    setGameState,
     clickAnimations,
     handleClick,
     buyUpgrade,
